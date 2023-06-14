@@ -33,7 +33,7 @@ const MerchantNavbar = () => {
           <HamburgerIcon />
         </WrapperHamburger>
         <NavLinkWrapper open={open}>
-          <Link href="/dashboard/order" onClick={toggleHamburger}>
+          <Link href="/" onClick={toggleHamburger}>
             <Text fontSize="lg" color="#7F8A96">
               Order
             </Text>

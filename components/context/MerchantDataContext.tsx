@@ -152,6 +152,8 @@ export const MerchantDataContextProvider = ({
     const response = await axios.get("/api/transaction");
 
     const { data } = response.data;
+    console.log(response.data);
+    console.log(response.status);
     console.log(data);
     setTransaction(data);
   };
