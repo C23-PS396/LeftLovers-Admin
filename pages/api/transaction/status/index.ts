@@ -7,9 +7,6 @@ export default async function handler(
 ) {
   if (req.method === "PATCH") {
     const { status, transactionId } = req.body;
-    const { cookies } = req;
-    const token = cookies.authToken;
-    const config = { headers: { Authorization: `Bearer ${token}` } };
 
     try {
       const result = await axios.patch(
@@ -18,7 +15,6 @@ export default async function handler(
           status: status,
           transactionId: transactionId,
         },
-        config
       );
       return res.status(200).json(result.data);
     } catch (error: any) {

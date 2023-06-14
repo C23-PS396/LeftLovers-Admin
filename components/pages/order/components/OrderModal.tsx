@@ -59,6 +59,10 @@ const OrderModal = ({
               <Text>{transaction?.id.split("-")[0].toUpperCase()}</Text>
             </div>
             <div>
+              <Text className="font-bold">Merchant</Text>
+              <Text>{transaction?.merchant.name}</Text>
+            </div>{" "}
+            <div>
               <Text className="font-bold">Customer</Text>
               <Text>
                 {transaction?.customer.fullname ||
@@ -81,7 +85,9 @@ const OrderModal = ({
                             {idx + 1}. {food.foodName}
                           </Td>
                           <Td p={0}>{food.quantity} x</Td>
-                          <Td p={0}>{rupiahFormatter.format(food.foodPrice)}</Td>
+                          <Td p={0}>
+                            {rupiahFormatter.format(food.foodPrice)}
+                          </Td>
                         </Tr>
                       );
                     })}

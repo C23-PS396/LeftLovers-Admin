@@ -1,65 +1,23 @@
 import {
   Text,
   Heading,
-  Wrap,
-  WrapItem,
-  Avatar,
   useDisclosure,
-  Button,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverBody,
-  Popover,
 } from "@chakra-ui/react";
 import LogoWrapper from "../components/LogoWrapper";
 import NavLinkWrapper from "../components/NavLinkWrapper";
 import NavbarWrapper from "../components/NavbarWrapper";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import {
-  AuthContextState,
-  AuthStatus,
-  useAuthContext,
-} from "@/components/context/AuthContext";
 import React, { useRef, useState } from "react";
 import CustomDrawer from "@/components/common/Drawer/Drawer";
 import WrapperHamburger from "../components/WrapperHumberger";
 import HamburgerIcon from "../components/HambergerIcon";
-import useWindowSize from "@/components/hook/useWindowSize";
-import useCustomToast from "@/components/utils/useCustomToast";
-import ProfilePopOver from "./ProfilePopOver";
 
 const MerchantNavbar = () => {
-  const router = useRouter();
   const { isOpen, onClose } = useDisclosure();
   const btnRef = useRef();
   const [open, setOpen] = useState(false);
-  const toast = useCustomToast();
-  const { logout, setUser, setAuthStatus }: AuthContextState =
-    useAuthContext() as AuthContextState;
-
   const toggleHamburger = () => {
     setOpen(!open);
-  };
-
-  const logoutClickHandler = () => {
-    logout();
-    setUser(null);
-    setAuthStatus(AuthStatus.NOT_AUTHENTICATED);
-    router.replace("/");
-
-    toast({
-      type: "info",
-      message: "You are successfully logout",
-      title: "Logout success",
-    });
-  };
-
-  const logoClickHandler = () => {
-    router.push("/dashboard");
   };
 
   return (
@@ -75,27 +33,11 @@ const MerchantNavbar = () => {
           <HamburgerIcon />
         </WrapperHamburger>
         <NavLinkWrapper open={open}>
-          <Link href="/dashboard" onClick={toggleHamburger}>
-            <Text fontSize="lg" color="#7F8A96">
-              Overview
-            </Text>
-          </Link>
-          <Link href="/dashboard/food" onClick={toggleHamburger}>
-            <Text fontSize="lg" color="#7F8A96">
-              Food
-            </Text>
-          </Link>
           <Link href="/dashboard/order" onClick={toggleHamburger}>
             <Text fontSize="lg" color="#7F8A96">
               Order
             </Text>
           </Link>
-          <Link href="/dashboard/review" onClick={toggleHamburger}>
-            <Text fontSize="lg" color="#7F8A96">
-              Review
-            </Text>
-          </Link>
-          <ProfilePopOver logoutClickHandler={logoutClickHandler} />
         </NavLinkWrapper>
       </NavbarWrapper>
       <CustomDrawer isOpen={isOpen} onClose={onClose} btnRef={btnRef} />

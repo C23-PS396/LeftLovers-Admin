@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/navbar/Navbar";
 import Landing from "@/components/pages/landing/Landing";
+import Order from "@/components/pages/order/Order";
 import Head from "next/head";
 
 export default function Home() {
@@ -18,8 +19,8 @@ export default function Home() {
           content="The easiest customizable URL shortener, ever."
         />
       </Head>
-      <Navbar type="landing" />
-      <Landing />
+      <Navbar type="merchant" />
+      <Order />
     </>
   );
 }

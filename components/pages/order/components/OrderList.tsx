@@ -90,6 +90,7 @@ const OrderList = ({
       >
         <Td>{transactionItem.id.toUpperCase().split("-")[0]}</Td>
         <Td>{getDateTime(transactionItem.createdAt)}</Td>
+        <Td>{transactionItem.merchant.name}</Td>
         <Td>
           {transactionItem.customer.fullname
             ? transactionItem.customer.fullname
@@ -107,7 +108,7 @@ const OrderList = ({
             e.stopPropagation();
           }}
         >
-          {transactionItem.status === STATUS.PAYMENT_ACCEPTED ? (
+          {transactionItem.status === STATUS.CHECK_PAYMENT ? (
             <Popover>
               <PopoverTrigger>
                 <EditIcon color="blue.500" />
@@ -122,7 +123,10 @@ const OrderList = ({
                       size="sm"
                       colorScheme="green"
                       onClick={() => {
-                        updateStatus(STATUS.ACCEPT, transactionItem.id);
+                        updateStatus(
+                          STATUS.PAYMENT_ACCEPTED,
+                          transactionItem.id
+                        );
                       }}
                     >
                       Accept
@@ -135,30 +139,6 @@ const OrderList = ({
                       }}
                     >
                       Denied
-                    </Button>
-                  </div>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-          ) : transactionItem.status === STATUS.ACCEPT ? (
-            <Popover>
-              <PopoverTrigger>
-                <EditIcon color="blue.500" />
-              </PopoverTrigger>
-              <PopoverContent width="fit-content">
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader>Action</PopoverHeader>
-                <PopoverBody>
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      colorScheme="green"
-                      onClick={() => {
-                        updateStatus(STATUS.DONE, transactionItem.id);
-                      }}
-                    >
-                      Mark as Done
                     </Button>
                   </div>
                 </PopoverBody>

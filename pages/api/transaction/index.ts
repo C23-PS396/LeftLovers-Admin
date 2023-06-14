@@ -6,17 +6,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    const { merchantId } = req.query;
-    const { cookies } = req;
-    const token = cookies.authToken;
-
     try {
-      const result = await axios.get(`${process.env.API_URL}/transaction`, {
-        params: {
-          merchantId: merchantId,
-        },
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const result = await axios.get(`${process.env.API_URL}/transaction`);
       return res.status(200).json(result.data);
     } catch (error: any) {
       return res.status(error.response.status).json(error.response.statusText);

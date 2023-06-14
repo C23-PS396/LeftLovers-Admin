@@ -76,6 +76,7 @@ export interface Transaction {
   status: number;
   food: FoodTransaction[];
   customer: CustomerTransaction;
+  merchant: Merchant;
 }
 
 export interface Review {
@@ -101,7 +102,7 @@ export interface MerchantDataContextState {
   setReview: Dispatch<SetStateAction<Review[] | null>>;
   getFood: () => void;
   getTransaction: () => void;
-  getMerchant: () => void
+  getMerchant: () => void;
 }
 
 export const MerchantDataContext =
@@ -148,11 +149,10 @@ export const MerchantDataContextProvider = ({
   };
 
   const getTransaction = async () => {
-    const response = await axios.get("/api/transaction", {
-      params: { merchantId: merchant?.id },
-    });
+    const response = await axios.get("/api/transaction");
 
     const { data } = response.data;
+    console.log(data);
     setTransaction(data);
   };
 

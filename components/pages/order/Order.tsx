@@ -32,7 +32,7 @@ const Order = () => {
 
   return (
     <Container className="flex flex-col gap-4">
-      <Heading color="#414D55">Order History</Heading>
+      <Heading color="#414D55">Admin Order Validation</Heading>
       {transaction?.length === 0 ? (
         <div className="w-full flex flex-col gap-4 justify-center items-center mt-6">
           <Image
@@ -69,6 +69,7 @@ const Order = () => {
                 <Tr>
                   <Th color="#FFF">Order ID</Th>
                   <Th color="#FFF">Date</Th>
+                  <Th color="#FFF">Merchant</Th>
                   <Th color="#FFF">Customer</Th>
                   <Th color="#FFF">Total price</Th>
                   <Th color="#FFF" className="!text-center">
