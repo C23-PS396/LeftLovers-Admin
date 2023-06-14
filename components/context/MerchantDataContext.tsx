@@ -169,12 +169,16 @@ export const MerchantDataContextProvider = ({
   useEffect(() => {
     if (merchant) {
       getFood();
-      getTransaction();
       getReview();
+      getTransaction();
     }
 
     console.log(merchant);
   }, [merchant]);
+
+  useEffect(() => {
+    getTransaction();
+  }, []);
 
   const merchantDataContextValue: MerchantDataContextState = {
     merchant,
