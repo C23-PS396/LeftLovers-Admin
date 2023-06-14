@@ -152,9 +152,6 @@ export const MerchantDataContextProvider = ({
     const response = await axios.get("/api/transaction");
 
     const { data } = response.data;
-    console.log(response.data);
-    console.log(response.status);
-    console.log(data);
     setTransaction(data);
   };
 
@@ -172,8 +169,6 @@ export const MerchantDataContextProvider = ({
       getReview();
       getTransaction();
     }
-
-    console.log(merchant);
   }, [merchant]);
 
   useEffect(() => {
